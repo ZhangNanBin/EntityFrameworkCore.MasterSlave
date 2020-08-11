@@ -5,7 +5,7 @@
   using System.ComponentModel;
   using System.Linq;
   using System.Reflection;
-  using EntityFrameworkCore.MasterSlave.DbContext;
+  using EntityFrameworkCore.MasterSlave.Database;
 
   public class UtilRandom
   {
@@ -68,7 +68,6 @@
         _ => 0
       };
 
-      Console.WriteLine($"{ GetDescription(roundRobinPolic)}：{index}");
       return configs[index];
     }
 
@@ -80,26 +79,6 @@
     public static string GetConnectionString(DbConnectionOption option)
     {
       return GetSlaveConnectionConfig(option.SlaveConnectionConfigs, option.RoundRobinPolicy).ConnectionString;
-    }
-
-    /// <summary>
-    /// 获取类型的Description特性描述信息
-    /// </summary>
-    /// <param name="type">类型对象</param>
-    /// <param name="inherit">是否搜索类型的继承链以查找描述特性</param>
-    /// <returns>返回Description特性描述信息，如不存在则返回类型的全名</returns>
-    public static string GetDescription(Enum enumValue)
-    {
-      if (enumValue is null)
-      {
-        throw new ArgumentNullException(nameof(enumValue));
-      }
-
-      string value = enumValue.ToString();
-      FieldInfo field = enumValue.GetType().GetField(value);
-      DescriptionAttribute desc = field.GetCustomAttribute<DescriptionAttribute>(false);    //获取描述属性
-
-      return desc == null ? $"{enumValue.GetType().FullName}.{value}" : desc.Description;
     }
   }
 }

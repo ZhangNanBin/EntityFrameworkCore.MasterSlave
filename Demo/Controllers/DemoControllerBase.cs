@@ -1,7 +1,7 @@
 ﻿namespace Demo.Controllers
 {
   using Demo.Database;
-  using EntityFrameworkCore.MasterSlave.DbContext;
+  using EntityFrameworkCore.MasterSlave.Database;
   using EntityFrameworkCore.MasterSlave.Interfaces;
   using Microsoft.AspNetCore.Mvc;
   using Microsoft.Extensions.Logging;

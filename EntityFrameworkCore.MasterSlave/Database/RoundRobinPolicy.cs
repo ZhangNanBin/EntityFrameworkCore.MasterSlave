@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace EntityFrameworkCore.MasterSlave.DbContext
+namespace EntityFrameworkCore.MasterSlave.Database
 {
   public enum RoundRobinPolicy
   {

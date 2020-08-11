@@ -1,4 +1,4 @@
-﻿namespace EntityFrameworkCore.MasterSlave.DbContext
+﻿namespace EntityFrameworkCore.MasterSlave.Database
 {
   using System.Collections.Generic;
   public class DbConnectionOption

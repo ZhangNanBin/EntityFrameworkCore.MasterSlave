@@ -1,6 +1,6 @@
 ﻿namespace EntityFrameworkCore.MasterSlave
 {
-  using EntityFrameworkCore.MasterSlave.DbContext;
+  using EntityFrameworkCore.MasterSlave.Database;
   using EntityFrameworkCore.MasterSlave.Interfaces;
 
   public class DbContextFactory<TDbContext> : IDbContextFactory<TDbContext>

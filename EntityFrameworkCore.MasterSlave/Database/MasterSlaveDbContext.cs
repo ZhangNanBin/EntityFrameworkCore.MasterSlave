@@ -1,4 +1,4 @@
-﻿namespace EntityFrameworkCore.MasterSlave.DbContext
+﻿namespace EntityFrameworkCore.MasterSlave.Database
 {
   using System;
   using EntityFrameworkCore.MasterSlave.Utils;
@@ -7,7 +7,7 @@
 
   public class MasterSlaveDbContext : DbContext
   {
-    private readonly DbConnectionOption DbConnectionOption = null;
+    private readonly DbConnectionOption dbConnectionOption = null;
 
     public MasterSlaveDbContext(IOptionsMonitor<DbConnectionOption> options)
     {
@@ -16,27 +16,27 @@
         throw new ArgumentNullException(nameof(options));
       }
 
-      DbConnectionOption = options.CurrentValue;
-    }
-
-    public virtual DbContext SlaveDbContext()
-    {
-      // 未开启读写分离直接返回this对象
-      if (DbConnectionOption.CQRSEnabled)
-      {
-        var connectionString = UtilRandom.GetConnectionString(DbConnectionOption);
-        Database.GetDbConnection().ConnectionString = connectionString;
-      }
-
-      return this;
+      dbConnectionOption = options.CurrentValue;
     }
 
     public virtual DbContext MasterDbContext()
     {
       // 未开启读写分离直接返回this对象
-      if (DbConnectionOption.CQRSEnabled)
+      if (dbConnectionOption.CQRSEnabled)
       {
-        Database.GetDbConnection().ConnectionString = this.DbConnectionOption.MasterConnectionConfig;
+        Database.GetDbConnection().ConnectionString = this.dbConnectionOption.MasterConnectionConfig;
+      }
+
+      return this;
+    }
+
+    public virtual DbContext SlaveDbContext()
+    {
+      // 未开启读写分离直接返回this对象
+      if (dbConnectionOption.CQRSEnabled)
+      {
+        var connectionString = UtilRandom.GetConnectionString(dbConnectionOption);
+        Database.GetDbConnection().ConnectionString = connectionString;
       }
 
       return this;
@@ -45,20 +45,20 @@
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
       // 使用不同的数据库提供程序
-      var masterConnectionConfig = DbConnectionOption.MasterConnectionConfig;
-      if (DbConnectionOption.DbType == DbType.MySQL)
+      var masterConnectionConfig = dbConnectionOption.MasterConnectionConfig;
+      if (dbConnectionOption.DbType == DbType.MySQL)
       {
         optionsBuilder.UseMySql(masterConnectionConfig);
       }
-      else if (DbConnectionOption.DbType == DbType.SqlServer)
+      else if (dbConnectionOption.DbType == DbType.SqlServer)
       {
         optionsBuilder.UseSqlServer(masterConnectionConfig);
       }
-      else if (DbConnectionOption.DbType == DbType.Sqlite)
+      else if (dbConnectionOption.DbType == DbType.Sqlite)
       {
         optionsBuilder.UseSqlite(masterConnectionConfig);
       }
-      else if (DbConnectionOption.DbType == DbType.PostgreSQL)
+      else if (dbConnectionOption.DbType == DbType.PostgreSQL)
       {
         optionsBuilder.UseNpgsql(masterConnectionConfig);
       }

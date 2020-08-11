@@ -1,7 +1,7 @@
 ﻿namespace Demo.Database
 {
   using Demo.Entity;
-  using EntityFrameworkCore.MasterSlave.DbContext;
+  using EntityFrameworkCore.MasterSlave.Database;
   using Microsoft.EntityFrameworkCore;
   using Microsoft.Extensions.Options;
 
