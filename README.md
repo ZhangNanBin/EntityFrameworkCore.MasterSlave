@@ -48,9 +48,7 @@
     # replicate-ignore-db=mysql  # 忽略的数据库 生产库上不建议设置过滤规则。如果非要设置，那就用replicate-wild-ignore-table
     # replicate-wild-ignore-table= mysql.%  # 忽略的数据库表
 
-    # 需要复制的数据库 不指定默认为所有
-    replicate-do-db=db_name
-
+    # replicate-do-db=db_name # 需要复制的数据库 不指定默认为所有
 
     # 配置数据库日志信息 
     log_bin		= /var/log/mysql/mysql-bin.log # 日志路径
