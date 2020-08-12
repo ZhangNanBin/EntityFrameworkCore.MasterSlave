@@ -19,7 +19,7 @@
       dbConnectionOption = options.CurrentValue;
     }
 
-    public virtual DbContext MasterDbContext()
+    public virtual MasterSlaveDbContext MasterDbContext()
     {
       // 未开启读写分离直接返回this对象
       if (dbConnectionOption.CQRSEnabled)
@@ -30,7 +30,7 @@
       return this;
     }
 
-    public virtual DbContext SlaveDbContext()
+    public virtual MasterSlaveDbContext SlaveDbContext()
     {
       // 未开启读写分离直接返回this对象
       if (dbConnectionOption.CQRSEnabled)
