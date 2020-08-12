@@ -23,16 +23,6 @@ namespace Demo
     {
       services.AddControllers();
       services.AddMasterSlave<DemoDbContext>(Configuration.GetSection("ConnectionStrings"));
-      services.AddCors(options =>
-      {
-
-        options.AddPolicy("zhang", policy =>
-         {
-           policy.WithOrigins("https://localhost:5005")
-               .AllowAnyHeader()
-               .AllowAnyMethod();
-         });
-      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,11 +37,8 @@ namespace Demo
 
       app.UseRouting();
 
-      app.UseMiddleware<CorsMiddleware>("zhang");
-
       app.UseAuthorization();
 
-      app.UseMiddleware<RequestIPMiddleware>();
 
       app.UseEndpoints(endpoints =>
       {
