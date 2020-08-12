@@ -52,6 +52,7 @@
       return MasterDbContext.SaveChanges(acceptAllChangesOnSuccess);
     }
 
+    #region 在保存时使用MasterDbContext
     public int SaveChanges()
     {
       return MasterDbContext.SaveChanges();
@@ -66,87 +67,88 @@
     {
       return await MasterDbContext.SaveChangesAsync(cancellationToken);
     }
+    #endregion
 
     public EntityEntry Add(object entity)
     {
-      return MasterDbContext.Add(entity);
+      return dbContext.Add(entity);
     }
 
     public EntityEntry<TEntity> Add<TEntity>(TEntity entity) where TEntity : class
     {
-      return MasterDbContext.Add(entity);
+      return dbContext.Add(entity);
     }
 
     public async ValueTask<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default)
     {
-      return await MasterDbContext.AddAsync(entity, cancellationToken);
+      return await dbContext.AddAsync(entity, cancellationToken);
     }
 
     public async ValueTask<EntityEntry<TEntity>> AddAsync<TEntity>(TEntity entity, CancellationToken cancellationToken = default)
       where TEntity : class
     {
-      return await MasterDbContext.AddAsync(entity, cancellationToken);
+      return await dbContext.AddAsync(entity, cancellationToken);
     }
 
     public void AddRange(params object[] entities)
     {
-      MasterDbContext.AddRange(entities);
+      dbContext.AddRange(entities);
     }
 
     public void AddRange(IEnumerable<object> entities)
     {
-      MasterDbContext.AddRange(entities);
+      dbContext.AddRange(entities);
     }
 
     public async Task AddRangeAsync(IEnumerable<object> entities, CancellationToken cancellationToken = default)
     {
-      await MasterDbContext.AddRangeAsync(entities, cancellationToken);
+      await dbContext.AddRangeAsync(entities, cancellationToken);
     }
 
     public async Task AddRangeAsync(params object[] entities)
     {
-      await MasterDbContext.AddRangeAsync(entities);
+      await dbContext.AddRangeAsync(entities);
     }
 
     public EntityEntry Remove(object entity)
     {
-      return MasterDbContext.Remove(entity);
+      return dbContext.Remove(entity);
     }
 
     public EntityEntry<TEntity> Remove<TEntity>(TEntity entity) where TEntity : class
     {
-      return MasterDbContext.Remove(entity);
+      return dbContext.Remove(entity);
     }
 
     public void RemoveRange(IEnumerable<object> entities)
     {
-      MasterDbContext.RemoveRange(entities);
+      dbContext.RemoveRange(entities);
     }
 
     public void RemoveRange(params object[] entities)
     {
-      MasterDbContext.RemoveRange(entities);
+      dbContext.RemoveRange(entities);
     }
 
     public EntityEntry Update(object entity)
     {
-      return MasterDbContext.Update(entity);
+      return dbContext.Update(entity);
     }
 
     public EntityEntry<TEntity> Update<TEntity>(TEntity entity)
       where TEntity : class
     {
-      return MasterDbContext.Update(entity);
+      return dbContext.Update(entity);
     }
 
     public void UpdateRange(IEnumerable<object> entities)
     {
-      MasterDbContext.UpdateRange(entities);
+      dbContext.UpdateRange(entities);
     }
 
     public void UpdateRange(params object[] entities)
     {
-      MasterDbContext.UpdateRange(entities);
+      dbContext.UpdateRange(entities);
     }
     #endregion
 
