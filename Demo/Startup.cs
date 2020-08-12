@@ -1,7 +1,6 @@
 namespace Demo
 {
   using Demo.Database;
-  using Demo.Middleware;
   using EntityFrameworkCore.MasterSlave;
   using Microsoft.AspNetCore.Builder;
   using Microsoft.AspNetCore.Hosting;
