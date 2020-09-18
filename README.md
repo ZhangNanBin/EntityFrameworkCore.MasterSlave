@@ -3,6 +3,11 @@
 ## MySQL主从配置
 
 ### Master数据库  
+    ```
+    RESET MASTER
+    ```
+功能说明：删除所有的binglog日志文件，并将日志索引文件清空，重新开始所有新的日志文件。用于第一次进行搭建主从库时，进行主库binlog初始化工作；
+
 1. 修改配置文件
     ```
     server-id	= 1 # 在同一个集群中，server-id不能重复
@@ -76,3 +81,14 @@
     ```
     ![从库状态](./images/从库状态.png)  
     如果这Slave_IO_Running、Slave_SQL_Running选项不全是Yes，那就说明你前面某个步骤配置错了。
+    
+  4. 清除从库配置
+    ```
+    STOP SLAVE;
+    ```
+    
+    ```
+    RESET SLAVE ALL;
+    ```
+  
+  
