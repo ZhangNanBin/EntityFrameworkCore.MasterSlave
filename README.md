@@ -82,12 +82,8 @@
     ![从库状态](./images/从库状态.png)  
     如果这Slave_IO_Running、Slave_SQL_Running选项不全是Yes，那就说明你前面某个步骤配置错了。
     
-  4. 清除从库配置
-    
+4. 清除从库配置
     ```
-    STOP SLAVE;
-    
+    STOP SLAVE;    
     RESET SLAVE ALL;
     ```
-  
-  
