@@ -86,9 +86,7 @@
     
     ```
     STOP SLAVE;
-    ```
     
-    ```
     RESET SLAVE ALL;
     ```
   
